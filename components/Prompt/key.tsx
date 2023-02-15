@@ -1,5 +1,11 @@
-export default function Key({ char }: { char: string }) {
-  return <span className='w-10 h-10 bg-slate-400 p-2'>
+import styles from './prompt.module.css'
+
+interface KeyProps {
+  char: string
+}
+
+export default function Key ({ char }: KeyProps): JSX.Element {
+  return <span className={styles.key}>
     {char}
   </span>
 }

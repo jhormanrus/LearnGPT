@@ -1,7 +1,12 @@
-import Key from "./key"
+import styles from './prompt.module.css'
+import Key from './key'
 
-export default function Token({ value }: { value: string }) {
-  return <span className='bg-slate-600 p-2'>
+interface TokenProps {
+  value: string
+}
+
+export default function Token ({ value }: TokenProps): JSX.Element {
+  return <span className={styles.token}>
     {
       value.split('').map((char, i) => (
         <Key char={char} key={i} />

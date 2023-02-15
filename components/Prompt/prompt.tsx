@@ -1,10 +1,15 @@
+import styles from './prompt.module.css'
 import Token from './token'
 
-export default function Prompt({ value }: { value: string }) {
+interface PromptProps {
+  value: string
+}
+
+export default function Prompt ({ value }: PromptProps): JSX.Element {
   const tokens = value.split(' ')
 
   return (
-    <div className='bg-stone-900 w-[820px] h-[425px] flex flex-wrap'>
+    <div className={styles.prompt}>
       {
         tokens.map((token, i) => (
           <Token value={token} key={i} />

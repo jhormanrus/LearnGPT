@@ -1,0 +1,11 @@
+.prompt {
+  @apply bg-stone-900 w-[820px] h-[315px] flex flex-wrap;
+}
+
+.token {
+  @apply text-[45px] bg-slate-600;
+}
+
+.key {
+  @apply w-10 h-10 bg-slate-400;
+}
