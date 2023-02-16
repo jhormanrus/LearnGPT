@@ -6,7 +6,7 @@ export default function PlayPage (): JSX.Element {
   return (
     <main>
       play
-      <Prompt value={prompt}></Prompt>
+      <Prompt text={prompt}></Prompt>
     </main>
   )
 }
