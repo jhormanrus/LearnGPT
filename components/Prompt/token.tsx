@@ -2,14 +2,15 @@ import styles from './prompt.module.css'
 import Key from './key'
 
 interface TokenProps {
-  value: string
+  word: string
+  typedWord?: string
 }
 
-export default function Token ({ value }: TokenProps): JSX.Element {
+export default function Token ({ word, typedWord }: TokenProps): JSX.Element {
   return <span className={styles.token}>
     {
-      value.split('').map((char, i) => (
-        <Key char={char} key={i} />
+      word.split('').map((char, i) => (
+        <Key key={i} char={char} typedChar={typedWord?.[i]} />
       ))
     }
   </span>

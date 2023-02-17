@@ -4,6 +4,22 @@ import Token from './token'
 
 interface PromptProps {
   text: string
+  typedText: string
+}
+
+export default function Prompt ({ text, typedText = 'useMemo es ua' }: PromptProps): JSX.Element {
+  const tokens = useTokens(text)
+  const typedTokens = useTokens(typedText)
+
+  return (
+    <div className={styles.prompt}>
+      {
+        tokens.map((word, i) => (
+          <Token key={i} word={word} typedWord={typedTokens[i]} />
+        ))
+      }
+    </div>
+  )
 }
 
 function useTokens (text: string): string[] {
@@ -14,18 +30,4 @@ function useTokens (text: string): string[] {
       return isLast ? token : `${token} `
     })
   }, [text])
-}
-
-export default function Prompt ({ text }: PromptProps): JSX.Element {
-  const tokens = useTokens(text)
-
-  return (
-    <div className={styles.prompt}>
-      {
-        tokens.map((token, i) => (
-          <Token value={token} key={i} />
-        ))
-      }
-    </div>
-  )
 }
