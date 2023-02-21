@@ -1,12 +1,13 @@
 import styles from './prompt.module.css'
 import Key from './key'
+import { memo } from 'react'
 
 interface TokenProps {
   word: string
   typedWord?: string
 }
 
-export default function Token ({ word, typedWord }: TokenProps): JSX.Element {
+function Token ({ word, typedWord }: TokenProps): JSX.Element {
   return <span className={styles.token}>
     {
       word.split('').map((char, i) => (
@@ -15,3 +16,5 @@ export default function Token ({ word, typedWord }: TokenProps): JSX.Element {
     }
   </span>
 }
+
+export default memo(Token)

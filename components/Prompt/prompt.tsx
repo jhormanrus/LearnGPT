@@ -8,6 +8,7 @@ interface PromptProps {
 }
 
 export default function Prompt ({ text }: PromptProps): JSX.Element {
+  console.log(text)
   const { typedText } = useTypedText()
   const [tokens] = useTokens(text)
   const [typedTokens] = useTokens(typedText)
@@ -25,12 +26,8 @@ export default function Prompt ({ text }: PromptProps): JSX.Element {
 
 function useTokens (text: string): [string[]] {
   const tokens = useMemo(() => {
-    const splitedText = text.split(' ')
-    const tokens = splitedText.map((word, i) => {
-      const isLast = i === splitedText.length - 1
-      return isLast ? word : `${word} `
-    })
-    return tokens
+    const regex = /(?<=[\n ])/
+    return text.split(regex)
   }, [text])
 
   return [tokens]
@@ -42,9 +39,13 @@ function useTypedText (): { typedText: string } {
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent): void => {
       const isChar = event.key.length === 1
+      const isEnter = event.key === 'Enter'
       const isBackspace = event.key === 'Backspace'
       if (isChar) {
         setTypedText(typedText => typedText + event.key)
+      }
+      if (isEnter) {
+        setTypedText(typedText => typedText + '\n')
       }
       if (isBackspace) {
         setTypedText(typedText => typedText.slice(0, -1))

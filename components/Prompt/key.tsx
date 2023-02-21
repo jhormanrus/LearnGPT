@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import styles from './prompt.module.css'
 
 interface KeyProps {
@@ -5,7 +6,7 @@ interface KeyProps {
   typedChar?: string
 }
 
-export default function Key ({ char, typedChar }: KeyProps): JSX.Element {
+function Key ({ char, typedChar }: KeyProps): JSX.Element {
   const className = [styles.key]
 
   if (typedChar === char) {
@@ -19,3 +20,5 @@ export default function Key ({ char, typedChar }: KeyProps): JSX.Element {
     {char}
   </span>
 }
+
+export default memo(Key)
