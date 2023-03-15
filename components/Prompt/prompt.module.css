@@ -6,6 +6,10 @@
   @apply text-[45px] bg-slate-600;
 }
 
+.breakLine {
+  @apply h-0 basis-full;
+}
+
 .key {
   @apply w-10 h-10 bg-slate-500 text-white/60 whitespace-pre;
 }

@@ -7,6 +7,7 @@ interface KeyProps {
 }
 
 function Key ({ char, typedChar }: KeyProps): JSX.Element {
+  const isNewLine = char === '\n'
   const className = [styles.key]
 
   if (typedChar === char) {
@@ -17,7 +18,7 @@ function Key ({ char, typedChar }: KeyProps): JSX.Element {
   }
 
   return <span className={className.join(' ')}>
-    {char}
+    {isNewLine ? '↵' : char}
   </span>
 }
 

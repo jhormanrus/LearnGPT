@@ -8,13 +8,20 @@ interface TokenProps {
 }
 
 function Token ({ word, typedWord }: TokenProps): JSX.Element {
-  return <span className={styles.token}>
+  const hasNewLine = word.slice(-1) === '\n'
+
+  return <>
+    <span className={styles.token}>
+      {
+        word.split('').map((char, i) => (
+          <Key key={i} char={char} typedChar={typedWord?.[i]} />
+        ))
+      }
+    </span>
     {
-      word.split('').map((char, i) => (
-        <Key key={i} char={char} typedChar={typedWord?.[i]} />
-      ))
+      hasNewLine && <span className={styles.breakLine}></span>
     }
-  </span>
+  </>
 }
 
 export default memo(Token)
